@@ -1,19 +1,35 @@
 const express = require('express')
 const path = require('path')
-const fs = require('fs')
+const morgan = require('morgan')
 const mongoose = require('mongoose')
 const app = express();
+const router = express.Router();
 const PORT = process.env.PORT || 3000;
-
-
-//===========PATHS
-const public = path.resolve(__dirname, './public');
-const html = path.resolve(__dirname, './public/html')
 
 //============MIDDLEWARE
 app.use(express.static('public'));
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(morgan("dev"));
 
+//===========MONGOOSE DB
+mongoose.connect('mongodb://localhost/workout', { useNewUrlParser: true , useFindAndModify: false });
+let db = mongoose.connection;
+
+//======CHECK FOR MONGO CONNECTION
+db.once('open', function(){
+    console.log('Connected to MongoDB')
+})
+//=====CHECK DB ERRORS
+db.on('error', function(err){
+    console.log(err)
+})
+
+//============API-ROUTES
+require("./routes/api-routes.js")(app)
+
+//===========HTML-PATHS
+const html = path.resolve(__dirname, './public/html')
 
 //============HTML-ROUTES
 app.get('/', (req, res) => {
@@ -25,7 +41,6 @@ app.get('/stats', (req, res) => {
 app.get('/exercise', (req, res) => {
     res.sendFile(path.join(html, 'exercise.html'))
 })
-
 
 //============APP LISTENING
 app.listen(PORT, () => console.log("LISTENING ON " + PORT))
