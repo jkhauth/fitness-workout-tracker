@@ -21,13 +21,11 @@ module.exports = function (app) {
     //==========CREATES A NEW WORKOUT TO DB WITH CURRENT TIME
     app.post("/api/workouts", (res) => {
         Workout.create({day: Date.now()}, (err, data) => {
-            console.log(data)
             if (err) throw err;
         });
     });
     //=========CREATES/UPDATES EXERCISES TO WORKOUT BASED ON ID
     app.put("/api/workouts/:id", ({ body, params }, res) => {
-        console.log(params.id)
         Workout.findOneAndUpdate(params.id, { $push: { exercises : body } }, (err, data) => {
             if (err) throw err;
             res.json(data);

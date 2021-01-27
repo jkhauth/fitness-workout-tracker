@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(morgan("dev"));
 
 //===========MONGOOSE DB
-mongoose.connect('mongodb://localhost/workout', { useNewUrlParser: true , useFindAndModify: false });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', { useNewUrlParser: true , useFindAndModify: false , useCreateIndex: true , useUnifiedTopology: true });
 let db = mongoose.connection;
 
 //======CHECK FOR MONGO CONNECTION
