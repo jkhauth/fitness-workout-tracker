@@ -15,21 +15,18 @@
 
 ## Screenshots
 <table>
-	<!--DESIGNING CODE-ENGINE-->
 	<tr>
 		<td>
             <p> I went with a minimalist design for this application. User is prompts right away when if they would like to continue their last workout or create a new one</p>
 			<img width="300" alt="design-concept" src="https://user-images.githubusercontent.com/72667159/105942845-0561f500-602e-11eb-8d58-4fc88d3b53e0.JPG">
 		</td>
 	</tr>
-    <!--ASKING THE USER HOW LONG-->
 	<tr>
 		<td> 
             <p> Application takes in resistance or cardio exercises</p>
 			<img width="300" alt="password-length" src="https://user-images.githubusercontent.com/72667159/105942846-0561f500-602e-11eb-9bef-6229760565b7.JPG">
 		</td>
 	</tr>
-    <!--CONFIRMING WITH USER ON CRITERIA-->
     <tr>
         <td>
             <p> The application confirms and adds all exercises to give the user a total workout miles and total exercises</p>
